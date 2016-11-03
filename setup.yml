@@ -1,0 +1,10 @@
+- hosts: localhost
+  tasks:
+  - name: git fetch
+    yum: name=git state=latest
+    become: yes
+    become_method: sudo
+  - name: clone git repo
+    git: repo=https://github.com/spring-projects/spring-petclinic.git dest=~/petclinic
+  - name: clone t repo
+    git: repo=https://github.com/sshoster/repot.git dest=~/repotsagi
