@@ -7,4 +7,18 @@
   - name: clone git repo
     git: repo=https://github.com/spring-projects/spring-petclinic.git dest=~/petclinic
   - name: clone t repo
-    git: repo=https://github.com/sshoster/repot.git dest=~/repotsagi
+    git: repo=https://github.com/sshoster/repot.git dest=~/repotsagi update=no
+  - name: Install Docker
+    yum: name=docker state=latest
+    become: yes
+    become_method: sudo
+  - name: change group
+    user: name=ec2-user groups=docker append=yes
+    become: yes
+    become_method: sudo
+  - name: Start service
+    service: name=docker state=started
+    become: yes
+    become_method: sudo
+
+
